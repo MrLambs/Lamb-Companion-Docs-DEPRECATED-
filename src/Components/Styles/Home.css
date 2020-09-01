@@ -1,0 +1,15 @@
+.home {
+    margin-top: -41px;
+    padding-top: 100px;
+    height: 97.5vh
+}
+
+h1 {
+    text-align: center;
+}
+
+.summary {
+    margin: 0 25% 0 25%;
+    text-align: center;
+    padding-top: 10px;
+}

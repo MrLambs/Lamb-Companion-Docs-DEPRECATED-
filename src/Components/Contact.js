@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { init, sendForm } from 'emailjs-com';
-import './Contact.css'
+import './Styles/Contact.css'
 
 const Contact = () => {
     //we want emailjs to init immediately, recognizing the correct user in order to slip emails.
@@ -39,7 +39,9 @@ const Contact = () => {
         <div className="blue-grey darken-1 height-adjust">
             <div className="statement white-text">
                 <h1>Thank You!</h1>
-                <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. Your feedback will be used to make improvements on Lamb Companion moving forward. </p>
+                <div className="summary">
+                <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. We encourage you to fill out the form below and recommend your ideas for new commands or support requests. After clicking submit, your suggestions will be emailed straight to our dev team! Your feedback will be used to make improvements moving forward.</p>
+                </div>            
             </div>
             {/* Form will begin within contact-card */}
             <div className="contact-card">
