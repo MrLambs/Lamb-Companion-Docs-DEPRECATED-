@@ -1,0 +1,24 @@
+.row {
+    padding: 10px;
+}
+
+.button-row {
+    padding: 0 0 10px 45%;
+}
+
+.height-adjust {
+    min-height: 97.5vh;
+    width: 100%;
+}
+
+.statement {
+    margin-top: -41px;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    position: relative;
+}
+
+.loader {
+    align-content: center;
+}
