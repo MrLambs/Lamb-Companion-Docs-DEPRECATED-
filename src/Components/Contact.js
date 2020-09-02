@@ -48,7 +48,7 @@ const Contact = () => {
                 <div>
                     <div className="">
                         <div className="white-text"></div>
-
+                        {/* Row #1 */}
                         <div className="row">
                             <form className='col s12' id='form'>
                                 {/* input for user first name */}
@@ -66,7 +66,7 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                {/* input for user email */}
+                                {/* input for user email && Row #2 */}
                                 <div className="row">
                                     <div className="input-field col s6">
                                         <i className="material-icons prefix">email</i>
@@ -87,7 +87,8 @@ const Contact = () => {
                                         </label>
                                     </div>
                                 </div>
-                                {/* input for user message */}
+
+                                {/* input for user message && Row #3*/}
                                 <div className="row">
                                     <div className="input-field col s12">
                                         <i className="material-icons prefix">mode_edit</i>
@@ -95,11 +96,12 @@ const Contact = () => {
                                         <label htmlFor="icon_prefix2 message">Message</label>
                                     </div>
                                 </div>
-                                {/* And finally the form submission button. */}
+
+                                {/* And finally the form submission button && Row #4*/}
                                 <div className="button-row">
                                     {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
                                     {sending === true ?
-                                        <div className="preloader-wrapper active loader">
+                                        <div className="preloader-wrapper active loader loading-wheel">
                                             <div className="spinner-layer spinner-blue-only">
                                                 <div class="circle-clipper left">
                                                     <div className="circle"></div>

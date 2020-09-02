@@ -1,7 +1,10 @@
+.content {
+    min-height: 97.5vh
+}
+
 .home {
     margin-top: -41px;
     padding-top: 100px;
-    height: 97.5vh
 }
 
 h1 {
@@ -12,4 +15,12 @@ h1 {
     margin: 0 25% 0 25%;
     text-align: center;
     padding-top: 10px;
+}
+
+.invite-me {
+    padding-top: 80px;
+}
+.click-here {
+    text-align: center;
+    padding-top: 30px;
 }
