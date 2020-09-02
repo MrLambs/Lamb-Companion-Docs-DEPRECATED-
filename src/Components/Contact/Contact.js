@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { init, sendForm } from 'emailjs-com';
-import './Styles/Contact.css'
+import './Contact.css'
+import Modal from '../Modal/Modal';
 
 const Contact = () => {
     //we want emailjs to init immediately, recognizing the correct user in order to slip emails.
@@ -14,10 +15,19 @@ const Contact = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    // And finaly, I want a state element to control my showModal true/false flag.
+    const [modal, setModal] = useState(false);
 
+    //Let's write a function to trigger when we should show a modal.
+    const showModal = () => {
+        setModal(true);
+    };
     //we need an onClick handler for adjusting state and using emailjs to send the form values to valid email w/o server init 
     async function onFormSubmit(e) {
         e.preventDefault()
+        if (!firstName || !lastName || !email || !message) {
+            return showModal()
+        }
         setSending(true)
         const serviceID = 'default_service';
         const templateID = 'contact_form';
@@ -100,7 +110,7 @@ const Contact = () => {
                                 {/* And finally the form submission button && Row #4*/}
                                 <div className="button-row">
                                     {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
-                                    {sending === true ?
+                                    {sending === true && modal === false ?
                                         <div className="preloader-wrapper active loader loading-wheel">
                                             <div className="spinner-layer spinner-blue-only">
                                                 <div class="circle-clipper left">
@@ -117,6 +127,7 @@ const Contact = () => {
                                             <i class="material-icons right">send</i>
                                         </button>
                                     }
+                                    <Modal modal={modal} setModal={setModal}/>
                                 </div>
                             </form>
                         </div>

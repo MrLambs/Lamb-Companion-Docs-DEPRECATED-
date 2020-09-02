@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 
-import Nav from "./Components/Nav";
-import Home from "./Components/Home";
-import Commands from "./Components/Commands";
-import Contact from './Components/Contact'
+import Nav from "./Components/Nav/Nav";
+import Home from "./Components/Home/Home";
+import Commands from "./Components/Commands/Commands";
+import Contact from './Components/Contact/Contact'
 
 import { Switch, Route } from "react-router";
 
