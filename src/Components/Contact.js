@@ -14,7 +14,7 @@ const Contact = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    
+
     //we need an onClick handler for adjusting state and using emailjs to send the form values to valid email w/o server init 
     async function onFormSubmit(e) {
         e.preventDefault()
@@ -40,8 +40,8 @@ const Contact = () => {
             <div className="statement white-text">
                 <h1>Thank You!</h1>
                 <div className="summary">
-                <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. We encourage you to fill out the form below and recommend your ideas for new commands or support requests. After clicking submit, your suggestions will be emailed straight to our dev team! Your feedback will be used to make improvements moving forward.</p>
-                </div>            
+                    <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. We encourage you to fill out the form below and recommend your ideas for new commands or support requests. After clicking submit, your suggestions will be emailed straight to our dev team! Your feedback will be used to make improvements moving forward.</p>
+                </div>
             </div>
             {/* Form will begin within contact-card */}
             <div className="contact-card">
@@ -68,13 +68,25 @@ const Contact = () => {
 
                                 {/* input for user email */}
                                 <div className="row">
-                                    <div className="input-field col s12">
+                                    <div className="input-field col s6">
                                         <i className="material-icons prefix">email</i>
                                         <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={email} onChange={e => setEmail(e.target.value)} />
                                         <label for="icon_email user_email">Email</label>
                                     </div>
-                                </div>
 
+                                    <div class="input-field col s2">
+                                        <label>
+                                            <input name="group1" type="radio" unchecked />
+                                            <span>Support Request</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <label>
+                                            <input name="group1" type="radio" unchecked />
+                                            <span>Command Suggestion</span>
+                                        </label>
+                                    </div>
+                                </div>
                                 {/* input for user message */}
                                 <div className="row">
                                     <div className="input-field col s12">
