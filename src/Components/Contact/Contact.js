@@ -2,57 +2,71 @@ import React, { useState } from 'react';
 import { init, sendForm } from 'emailjs-com';
 import './Contact.css'
 
-import ValidateModal from '../Modals/validateModal/validateModal';
-import FormSentModal from '../Modals/formSentModal/formSentModal'
+import ValidateModal from './Modals/validateModal/validateModal';
+import FormSentModal from './Modals/formSentModal/formSentModal'
 
 const Contact = () => {
     //we want emailjs to init immediately, recognizing the correct user in order to slip emails.
     init('user_ze3siosLAJg2PS4owlwLm');
 
+
+    // ***STATE***
+
+
     // I want to 2-way bind the form values to the state in order to reset them upon submission
     // Below I will initialize one state element for each of the form inputs
     // I also want to add a boolean flag, I will call 'sending'. It will initialize as false
-    const [sending, setSending] = useState(false)
     const [form, setForm] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        message: ''
-    })
-    
-    // And finaly, I want a state element to control my showModal true/false flag.
-    const [validateModal, setValidateModal] = useState(false);
-    const [formSentModal, setFormSentModal] = useState(false);
+        message: '',
+        sending: false
+    });
+    // I also want state elements to control my modals by true/false flags.
+    const [modals, setModals] = useState({
+        validateModal: false,
+        formSentModal: false
+    });
+
+
+    // ***MODAL FUNCTIONALITY***
 
 
     //Let's write a function to trigger when we should show a validateModal.
     const showValidateModal = () => {
-        setValidateModal(true);
+        setModals({ ...modals, validateModal: true })
     };
     //And of course, one to close it.
     const closeValidateModal = (e) => {
         e.preventDefault()
-        setValidateModal(false)
-    }
+        setModals({ ...modals, validateModal: false })
+    };
     //Repeat the process for the formSentModal
     const showFormSentModal = () => {
-        setFormSentModal(true);
+        setModals({ ...modals, formSentModal: true })
     };
     const closeFormSentModal = (e) => {
         e.preventDefault()
-        setFormSentModal(false)
+        setModals({ ...modals, formSentModal: false })
     }
+
+
+    // ***FORM SUBMISSION FUNCTIONALITY***
+
 
     //we need an onClick handler for adjusting state and using emailjs to send the form values to valid email w/o server init 
     async function onFormSubmit(e) {
+        //let's grab those checkboxes and store them into variables!
         let supportInput = document.getElementById('support');
         let suggestionInput = document.getElementById('suggestion');
-
+        //We need a guard clause triggering validateModal if form is not filled in entirety.
         e.preventDefault();
-        if (!form.firstName || !form.lastName || !form.email || !form.message || (!supportInput.checked && !suggestionInput.checked)) {
+        if (!form.firstName || !form.lastName || !form.email || !form.message || 
+            (!supportInput.checked && !suggestionInput.checked)) {
             return showValidateModal()
         }
-
+        //Assuming someone fills out the form and pushes submit, we need a function to clear the form back to blanks.
         const clearForm = () => {
             setForm({
                 firstName: '',
@@ -63,14 +77,17 @@ const Contact = () => {
             supportInput.checked = false;
             suggestionInput.checked = false;
         };
-
-        setSending(true)
+        //Now that we've done that, let's make sure to set our 'sending' state property to true. This will allow us to conditionally render the loader wheel.
+        setForm({ ...form, sending: true })
+        //And finally, let's send off our form to the specific email using emailjs.
         const serviceID = 'default_service';
         const templateID = 'contact_form';
 
         await sendForm(serviceID, templateID, 'form')
-            .then(async (res) => {
-                setSending(false);
+            .then(() => {
+                //Form sending
+                setForm({ ...form, sending: true });
+                //Form sent
                 showFormSentModal();
                 clearForm();
             }, (err) => {
@@ -94,27 +111,28 @@ const Contact = () => {
                             <div className="white-text"></div>
                             {/* Row #1 */}
                             <div className="row">
+                                {/* Form begins here and likely will need to move to its own component in the future */}
                                 <form className='col s12' id='form'>
                                     {/* input for user first name */}
                                     <div className="row">
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} />
+                                            <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={form.firstName} onChange={e => setForm({ ...form, firstName: e.target.value })} />
                                             <label htmlFor="icon_prefix user_fname">First Name</label>
                                         </div>
                                         {/* input for user last name */}
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={form.lastName} onChange={e => setForm({...form, lastName: e.target.value})} />
+                                            <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={form.lastName} onChange={e => setForm({ ...form, lastName: e.target.value })} />
                                             <label htmlFor="icon_prefix user_lname">Last Name</label>
                                         </div>
                                     </div>
 
-                                    {/* input for user email && Row #2 */}
+                                    {/* input for user email, support/suggestion checkboxes && Row #2 */}
                                     <div className="row">
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">email</i>
-                                            <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+                                            <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
                                             <label htmlFor="icon_email user_email">Email</label>
                                         </div>
 
@@ -136,15 +154,15 @@ const Contact = () => {
                                     <div className="row">
                                         <div className="input-field col s12">
                                             <i className="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={form.message} onChange={e => setForm({...form, message: e.target.value})}></textarea>
+                                            <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}></textarea>
                                             <label htmlFor="icon_prefix2 message">Message</label>
                                         </div>
                                     </div>
 
                                     {/* And finally the form submission button && Row #4*/}
                                     <div className="button-row">
-                                        {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
-                                        {sending && !validateModal  ?
+                                        {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or the 'submit' button will show. */}
+                                        {form.sending && !modals.validateModal ?
                                             <div className="preloader-wrapper active loader loading-wheel">
                                                 <div className="spinner-layer spinner-blue-only">
                                                     <div className="circle-clipper left">
@@ -161,19 +179,19 @@ const Contact = () => {
                                             <i className="material-icons right">send</i>
                                             </button>
                                         }
-                                        {validateModal ?
+                                        {/* I also want a ternary operating our modals based on state properties previously listed. We want to conditionally render these if requirements are not met or if the form is successfully sent. */}
+                                        {modals.validateModal ?
                                             <div className="modals z-depth-5">
-                                                <ValidateModal validateModal={validateModal} closeValidateModal={closeValidateModal}/>
+                                                <ValidateModal validateModal={modals.validateModal} closeValidateModal={closeValidateModal} />
                                             </div>
-                                            : formSentModal ?
-                                            <div className="modals z-depth-5">
-                                                <FormSentModal formSentModal={formSentModal} closeFormSentModal={closeFormSentModal}/>
-                                            </div>
-                                            :
-                                            <div>
-                                            </div>
+                                            : modals.formSentModal ?
+                                                <div className="modals z-depth-5">
+                                                    <FormSentModal formSentModal={modals.formSentModal} closeFormSentModal={closeFormSentModal} />
+                                                </div>
+                                                :
+                                                <div>
+                                                </div>
                                         }
-
                                     </div>
                                 </form>
                             </div>
