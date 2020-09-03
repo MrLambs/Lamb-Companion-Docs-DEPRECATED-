@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css'
+import './validateModal.css'
 
 const Modal = ({ modal, setModal }) => {
     if (!modal) {
@@ -14,10 +14,9 @@ const Modal = ({ modal, setModal }) => {
     return (
         <div className="modal-body">
             <div className="row">
-                <div className="col s12 m6">
-                    <div className="card blue-grey darken-1">
+                    <div className="card blue lighten-2">
                         <div className="card-content white-text">
-                            <span className="card-title">Requirements not met!</span>
+                            <span className="card-title"><strong>Requirements Not Met!</strong></span>
                             <p>Please make sure you've entered all the necessary fields before pressing submit. Thank you!</p>
                         </div>
                         <div className="card-action">
@@ -26,7 +25,6 @@ const Modal = ({ modal, setModal }) => {
                             </button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { init, sendForm } from 'emailjs-com';
 import './Contact.css'
-import Modal from '../Modal/Modal';
+import Modal from '../validateModal/validateModal';
 
 const Contact = () => {
     //we want emailjs to init immediately, recognizing the correct user in order to slip emails.
@@ -33,12 +33,15 @@ const Contact = () => {
             return showModal()
         }
 
-        const uncheckAll = () => {
+        const clearForm = () => {
+            setFirstName('');
+            setLastName('');
+            setEmail('');
+            setMessage('');
             supportInput.checked = false;
             suggestionInput.checked = false;
         };
 
-        
         setSending(true)
         const serviceID = 'default_service';
         const templateID = 'contact_form';
@@ -46,12 +49,8 @@ const Contact = () => {
         await sendForm(serviceID, templateID, 'form')
             .then(async (res) => {
                 setSending(false)
-                alert()
-                setFirstName('');
-                setLastName('');
-                setEmail('');
-                setMessage('');
-                uncheckAll();
+                alert('Sent! Thank you for your feedback.')
+                clearForm()
             }, (err) => {
                 alert(JSON.stringify(err));
             });
@@ -59,94 +58,103 @@ const Contact = () => {
 
     return (
         <div className="blue-grey darken-1 height-adjust">
-            <div className="statement white-text">
-                <h1>Thank You!</h1>
-                <div className="summary">
-                    <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. We encourage you to fill out the form below and recommend your ideas for new commands or support requests. After clicking submit, your suggestions will be emailed straight to our dev team! Your feedback will be used to make improvements moving forward.</p>
+            <div className="middle">
+                <div className="statement white-text">
+                    <h1>Thank You!</h1>
+                    <div className="summary">
+                        <p>Lamb Companion was created as a means to bring people together through gaming and ease-of-access to information. We encourage you to fill out the form below and recommend your ideas for new commands or support requests. After clicking submit, your suggestions will be emailed straight to our dev team! Your feedback will be used to make improvements moving forward.</p>
+                    </div>
                 </div>
-            </div>
-            {/* Form will begin within contact-card */}
-            <div className="contact-card">
-                <div>
-                    <div className="">
-                        <div className="white-text"></div>
-                        {/* Row #1 */}
-                        <div className="row">
-                            <form className='col s12' id='form'>
-                                {/* input for user first name */}
-                                <div className="row">
-                                    <div className="input-field col s6">
-                                        <i className="material-icons prefix">account_circle</i>
-                                        <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={firstName} onChange={e => setFirstName(e.target.value)} />
-                                        <label htmlFor="icon_prefix user_fname">First Name</label>
-                                    </div>
-                                    {/* input for user last name */}
-                                    <div className="input-field col s6">
-                                        <i className="material-icons prefix">account_circle</i>
-                                        <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={lastName} onChange={e => setLastName(e.target.value)} />
-                                        <label htmlFor="icon_prefix user_lname">Last Name</label>
-                                    </div>
-                                </div>
-
-                                {/* input for user email && Row #2 */}
-                                <div className="row">
-                                    <div className="input-field col s6">
-                                        <i className="material-icons prefix">email</i>
-                                        <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={email} onChange={e => setEmail(e.target.value)} />
-                                        <label htmlFor="icon_email user_email">Email</label>
+                {/* Form will begin within contact-card */}
+                <div className="contact-card">
+                    <div>
+                        <div className="">
+                            <div className="white-text"></div>
+                            {/* Row #1 */}
+                            <div className="row">
+                                <form className='col s12' id='form'>
+                                    {/* input for user first name */}
+                                    <div className="row">
+                                        <div className="input-field col s6">
+                                            <i className="material-icons prefix">account_circle</i>
+                                            <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={firstName} onChange={e => setFirstName(e.target.value)} />
+                                            <label htmlFor="icon_prefix user_fname">First Name</label>
+                                        </div>
+                                        {/* input for user last name */}
+                                        <div className="input-field col s6">
+                                            <i className="material-icons prefix">account_circle</i>
+                                            <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={lastName} onChange={e => setLastName(e.target.value)} />
+                                            <label htmlFor="icon_prefix user_lname">Last Name</label>
+                                        </div>
                                     </div>
 
-                                    <div className="input-field col s2">
-                                        <label>
-                                            <input id="support" name="support_request" type="checkbox" unchecked="true"/>
-                                            <span>Support Request</span>
-                                        </label>
-                                    </div>
-                                    <div className="input-field col s4">
-                                        <label>
-                                            <input id="suggestion" name="command_suggestion" type="checkbox" unchecked="true"/>
-                                            <span>Command Suggestion</span>
-                                        </label>
-                                    </div>
-                                </div>
+                                    {/* input for user email && Row #2 */}
+                                    <div className="row">
+                                        <div className="input-field col s6">
+                                            <i className="material-icons prefix">email</i>
+                                            <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={email} onChange={e => setEmail(e.target.value)} />
+                                            <label htmlFor="icon_email user_email">Email</label>
+                                        </div>
 
-                                {/* input for user message && Row #3 */}
-                                <div className="row">
-                                    <div className="input-field col s12">
-                                        <i className="material-icons prefix">mode_edit</i>
-                                        <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={message} onChange={e => setMessage(e.target.value)}></textarea>
-                                        <label htmlFor="icon_prefix2 message">Message</label>
+                                        <div className="input-field col s2">
+                                            <label>
+                                                <input id="support" name="support_request" type="checkbox" unchecked="true" />
+                                                <span>Support Request</span>
+                                            </label>
+                                        </div>
+                                        <div className="input-field col s4">
+                                            <label>
+                                                <input id="suggestion" name="command_suggestion" type="checkbox" unchecked="true" />
+                                                <span>Command Suggestion</span>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* And finally the form submission button && Row #4*/}
-                                <div className="button-row">
-                                    {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
-                                    {sending === true && modal === false ?
-                                        <div className="preloader-wrapper active loader loading-wheel">
-                                            <div className="spinner-layer spinner-blue-only">
-                                                <div className="circle-clipper left">
-                                                    <div className="circle"></div>
-                                                </div><div className="gap-patch">
-                                                    <div className="circle"></div>
-                                                </div><div className="circle-clipper right">
-                                                    <div className="circle"></div>
+                                    {/* input for user message && Row #3 */}
+                                    <div className="row">
+                                        <div className="input-field col s12">
+                                            <i className="material-icons prefix">mode_edit</i>
+                                            <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                            <label htmlFor="icon_prefix2 message">Message</label>
+                                        </div>
+                                    </div>
+
+                                    {/* And finally the form submission button && Row #4*/}
+                                    <div className="button-row">
+                                        {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
+                                        {sending && !modal  ?
+                                            <div className="preloader-wrapper active loader loading-wheel">
+                                                <div className="spinner-layer spinner-blue-only">
+                                                    <div className="circle-clipper left">
+                                                        <div className="circle"></div>
+                                                    </div><div className="gap-patch">
+                                                        <div className="circle"></div>
+                                                    </div><div className="circle-clipper right">
+                                                        <div className="circle"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        :
-                                        <button className="btn waves-effect waves-light" type="submit" name="action" id='btn' onClick={onFormSubmit}>Submit
+                                            :
+                                            <button className="btn waves-effect waves-light" type="submit" name="action" id='btn' onClick={onFormSubmit}>Submit
                                             <i className="material-icons right">send</i>
-                                        </button>
-                                    }
-                                    <Modal modal={modal} setModal={setModal}/>
-                                </div>
-                            </form>
+                                            </button>
+                                        }
+                                        {modal ?
+                                            <div className="validateReqs z-depth-5">
+                                                <Modal modal={modal} setModal={setModal} />
+                                            </div>
+                                            :
+                                            <div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

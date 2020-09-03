@@ -1,24 +1,41 @@
 .row {
-    padding: 10px;
+  padding: 10px;
 }
 
 .button-row {
-    padding: 0 0 10px 45%;
+  padding: 0 0 10px 47%;
 }
 
 .height-adjust {
-    min-height: 97.5vh;
-    width: 100%;
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .statement {
-    margin-top: -41px;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 80px;
-    position: relative;
+  margin-top: -41px;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  position: relative;
 }
 
 .loader {
-    align-content: center;
+  align-content: center;
+}
+
+.validateReqs {
+    width: 50%;
+    height: 0%;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
 }
