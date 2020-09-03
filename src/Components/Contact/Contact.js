@@ -13,10 +13,13 @@ const Contact = () => {
     // Below I will initialize one state element for each of the form inputs
     // I also want to add a boolean flag, I will call 'sending'. It will initialize as false
     const [sending, setSending] = useState(false)
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+    const [form, setForm] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: ''
+    })
+    
     // And finaly, I want a state element to control my showModal true/false flag.
     const [validateModal, setValidateModal] = useState(false);
     const [formSentModal, setFormSentModal] = useState(false);
@@ -46,15 +49,17 @@ const Contact = () => {
         let suggestionInput = document.getElementById('suggestion');
 
         e.preventDefault();
-        if (!firstName || !lastName || !email || !message || (!supportInput.checked && !suggestionInput.checked)) {
+        if (!form.firstName || !form.lastName || !form.email || !form.message || (!supportInput.checked && !suggestionInput.checked)) {
             return showValidateModal()
         }
 
         const clearForm = () => {
-            setFirstName('');
-            setLastName('');
-            setEmail('');
-            setMessage('');
+            setForm({
+                firstName: '',
+                lastName: '',
+                email: '',
+                message: ''
+            })
             supportInput.checked = false;
             suggestionInput.checked = false;
         };
@@ -94,13 +99,13 @@ const Contact = () => {
                                     <div className="row">
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={firstName} onChange={e => setFirstName(e.target.value)} />
+                                            <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} />
                                             <label htmlFor="icon_prefix user_fname">First Name</label>
                                         </div>
                                         {/* input for user last name */}
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={lastName} onChange={e => setLastName(e.target.value)} />
+                                            <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={form.lastName} onChange={e => setForm({...form, lastName: e.target.value})} />
                                             <label htmlFor="icon_prefix user_lname">Last Name</label>
                                         </div>
                                     </div>
@@ -109,7 +114,7 @@ const Contact = () => {
                                     <div className="row">
                                         <div className="input-field col s6">
                                             <i className="material-icons prefix">email</i>
-                                            <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={email} onChange={e => setEmail(e.target.value)} />
+                                            <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
                                             <label htmlFor="icon_email user_email">Email</label>
                                         </div>
 
@@ -131,7 +136,7 @@ const Contact = () => {
                                     <div className="row">
                                         <div className="input-field col s12">
                                             <i className="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                            <textarea id="icon_prefix2 message" className="materialize-textarea field" name='message' value={form.message} onChange={e => setForm({...form, message: e.target.value})}></textarea>
                                             <label htmlFor="icon_prefix2 message">Message</label>
                                         </div>
                                     </div>
