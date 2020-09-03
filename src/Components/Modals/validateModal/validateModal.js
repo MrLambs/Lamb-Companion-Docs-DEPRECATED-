@@ -1,14 +1,8 @@
 import React from 'react';
-import './validateModal.css'
 
-const Modal = ({ modal, setModal }) => {
-    if (!modal) {
+const validateModal = ({ validateModal, closeValidateModal }) => {
+    if (!validateModal) {
         return null;
-    }
-
-    const closeModal = (e) => {
-        e.preventDefault()
-        setModal(false)
     }
 
     return (
@@ -20,8 +14,9 @@ const Modal = ({ modal, setModal }) => {
                             <p>Please make sure you've entered all the necessary fields before pressing submit. Thank you!</p>
                         </div>
                         <div className="card-action">
-                            <button className="btn waves-effect waves-light icon_prefix" type="submit" name="action" onClick={closeModal}>Close
-                                <i className="material-icons prefix">close</i>
+                            <button className="btn waves-effect waves-light icon_prefix" type="submit" name="action" onClick={closeValidateModal}>
+                            <i className="material-icons prefix btn-icons">clear</i>
+                                Close
                             </button>
                         </div>
                     </div>
@@ -30,4 +25,4 @@ const Modal = ({ modal, setModal }) => {
     );
 }
 
-export default Modal;
+export default validateModal;

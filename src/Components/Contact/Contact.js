@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { init, sendForm } from 'emailjs-com';
 import './Contact.css'
-import Modal from '../validateModal/validateModal';
+
+import ValidateModal from '../Modals/validateModal/validateModal';
+import FormSentModal from '../Modals/formSentModal/formSentModal'
 
 const Contact = () => {
     //we want emailjs to init immediately, recognizing the correct user in order to slip emails.
@@ -16,21 +18,36 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     // And finaly, I want a state element to control my showModal true/false flag.
-    const [modal, setModal] = useState(false);
+    const [validateModal, setValidateModal] = useState(false);
+    const [formSentModal, setFormSentModal] = useState(false);
 
-    //Let's write a function to trigger when we should show a modal.
-    const showModal = () => {
-        setModal(true);
+
+    //Let's write a function to trigger when we should show a validateModal.
+    const showValidateModal = () => {
+        setValidateModal(true);
     };
+    //And of course, one to close it.
+    const closeValidateModal = (e) => {
+        e.preventDefault()
+        setValidateModal(false)
+    }
+    //Repeat the process for the formSentModal
+    const showFormSentModal = () => {
+        setFormSentModal(true);
+    };
+    const closeFormSentModal = (e) => {
+        e.preventDefault()
+        setFormSentModal(false)
+    }
 
     //we need an onClick handler for adjusting state and using emailjs to send the form values to valid email w/o server init 
     async function onFormSubmit(e) {
-        let supportInput = document.getElementById('support')
-        let suggestionInput = document.getElementById('suggestion')
+        let supportInput = document.getElementById('support');
+        let suggestionInput = document.getElementById('suggestion');
 
-        e.preventDefault()
+        e.preventDefault();
         if (!firstName || !lastName || !email || !message || (!supportInput.checked && !suggestionInput.checked)) {
-            return showModal()
+            return showValidateModal()
         }
 
         const clearForm = () => {
@@ -48,9 +65,9 @@ const Contact = () => {
 
         await sendForm(serviceID, templateID, 'form')
             .then(async (res) => {
-                setSending(false)
-                alert('Sent! Thank you for your feedback.')
-                clearForm()
+                setSending(false);
+                showFormSentModal();
+                clearForm();
             }, (err) => {
                 alert(JSON.stringify(err));
             });
@@ -122,7 +139,7 @@ const Contact = () => {
                                     {/* And finally the form submission button && Row #4*/}
                                     <div className="button-row">
                                         {/* I want a ternary operator to distinguish between whether or not the 'sending' load wheel will show or not */}
-                                        {sending && !modal  ?
+                                        {sending && !validateModal  ?
                                             <div className="preloader-wrapper active loader loading-wheel">
                                                 <div className="spinner-layer spinner-blue-only">
                                                     <div className="circle-clipper left">
@@ -139,9 +156,13 @@ const Contact = () => {
                                             <i className="material-icons right">send</i>
                                             </button>
                                         }
-                                        {modal ?
-                                            <div className="validateReqs z-depth-5">
-                                                <Modal modal={modal} setModal={setModal} />
+                                        {validateModal ?
+                                            <div className="modals z-depth-5">
+                                                <ValidateModal validateModal={validateModal} closeValidateModal={closeValidateModal}/>
+                                            </div>
+                                            : formSentModal ?
+                                            <div className="modals z-depth-5">
+                                                <FormSentModal formSentModal={formSentModal} closeFormSentModal={closeFormSentModal}/>
                                             </div>
                                             :
                                             <div>
