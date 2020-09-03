@@ -22,24 +22,36 @@ const Contact = () => {
     const showModal = () => {
         setModal(true);
     };
+
     //we need an onClick handler for adjusting state and using emailjs to send the form values to valid email w/o server init 
     async function onFormSubmit(e) {
+        let supportInput = document.getElementById('support')
+        let suggestionInput = document.getElementById('suggestion')
+
         e.preventDefault()
-        if (!firstName || !lastName || !email || !message) {
+        if (!firstName || !lastName || !email || !message || (!supportInput.checked && !suggestionInput.checked)) {
             return showModal()
         }
+
+        const uncheckAll = () => {
+            supportInput.checked = false;
+            suggestionInput.checked = false;
+        };
+
+        
         setSending(true)
         const serviceID = 'default_service';
         const templateID = 'contact_form';
 
         await sendForm(serviceID, templateID, 'form')
-            .then(async () => {
+            .then(async (res) => {
                 setSending(false)
-                alert('Sent! Thank your for your feedback.')
+                alert()
                 setFirstName('');
                 setLastName('');
                 setEmail('');
                 setMessage('');
+                uncheckAll();
             }, (err) => {
                 alert(JSON.stringify(err));
             });
@@ -66,13 +78,13 @@ const Contact = () => {
                                     <div className="input-field col s6">
                                         <i className="material-icons prefix">account_circle</i>
                                         <input id="icon_prefix user_fname" type="text" className="validate field" name='user_fname' value={firstName} onChange={e => setFirstName(e.target.value)} />
-                                        <label for="icon_prefix user_fname">First Name</label>
+                                        <label htmlFor="icon_prefix user_fname">First Name</label>
                                     </div>
                                     {/* input for user last name */}
                                     <div className="input-field col s6">
                                         <i className="material-icons prefix">account_circle</i>
                                         <input id="icon_prefix user_lname" type="text" className="validate field" name='user_lname' value={lastName} onChange={e => setLastName(e.target.value)} />
-                                        <label for="icon_prefix user_lname">Last Name</label>
+                                        <label htmlFor="icon_prefix user_lname">Last Name</label>
                                     </div>
                                 </div>
 
@@ -81,24 +93,24 @@ const Contact = () => {
                                     <div className="input-field col s6">
                                         <i className="material-icons prefix">email</i>
                                         <input id="icon_email user_email" type="email" className="validate field" name='user_email' value={email} onChange={e => setEmail(e.target.value)} />
-                                        <label for="icon_email user_email">Email</label>
+                                        <label htmlFor="icon_email user_email">Email</label>
                                     </div>
 
-                                    <div class="input-field col s2">
+                                    <div className="input-field col s2">
                                         <label>
-                                            <input name="group1" type="radio" unchecked />
+                                            <input id="support" name="support_request" type="checkbox" unchecked="true"/>
                                             <span>Support Request</span>
                                         </label>
                                     </div>
-                                    <div class="input-field col s4">
+                                    <div className="input-field col s4">
                                         <label>
-                                            <input name="group1" type="radio" unchecked />
+                                            <input id="suggestion" name="command_suggestion" type="checkbox" unchecked="true"/>
                                             <span>Command Suggestion</span>
                                         </label>
                                     </div>
                                 </div>
 
-                                {/* input for user message && Row #3*/}
+                                {/* input for user message && Row #3 */}
                                 <div className="row">
                                     <div className="input-field col s12">
                                         <i className="material-icons prefix">mode_edit</i>
@@ -113,7 +125,7 @@ const Contact = () => {
                                     {sending === true && modal === false ?
                                         <div className="preloader-wrapper active loader loading-wheel">
                                             <div className="spinner-layer spinner-blue-only">
-                                                <div class="circle-clipper left">
+                                                <div className="circle-clipper left">
                                                     <div className="circle"></div>
                                                 </div><div className="gap-patch">
                                                     <div className="circle"></div>
@@ -124,7 +136,7 @@ const Contact = () => {
                                         </div>
                                         :
                                         <button className="btn waves-effect waves-light" type="submit" name="action" id='btn' onClick={onFormSubmit}>Submit
-                                            <i class="material-icons right">send</i>
+                                            <i className="material-icons right">send</i>
                                         </button>
                                     }
                                     <Modal modal={modal} setModal={setModal}/>

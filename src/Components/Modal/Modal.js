@@ -1,11 +1,12 @@
 import React from 'react';
+import './Modal.css'
 
 const Modal = ({ modal, setModal }) => {
     if (!modal) {
         return null;
     }
 
-    const onClose = (e) => {
+    const closeModal = (e) => {
         e.preventDefault()
         setModal(false)
     }
@@ -20,19 +21,14 @@ const Modal = ({ modal, setModal }) => {
                             <p>Please make sure you've entered all the necessary fields before pressing submit. Thank you!</p>
                         </div>
                         <div className="card-action">
-                            <button className="btn waves-effect waves-light icon_prefix" type="submit" name="action" onClick={onClose}>Close
+                            <button className="btn waves-effect waves-light icon_prefix" type="submit" name="action" onClick={closeModal}>Close
                                 <i className="material-icons prefix">close</i>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-
-
     );
 }
 
