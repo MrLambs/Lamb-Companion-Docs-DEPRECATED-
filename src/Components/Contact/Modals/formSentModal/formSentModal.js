@@ -1,9 +1,6 @@
 import React from 'react';
 
 const formSentModal = ({ modals, setModals }) => {
-    if (!formSentModal) {
-        return null;
-    }
 
     const closeFormSentModal = (e) => {
         e.preventDefault()

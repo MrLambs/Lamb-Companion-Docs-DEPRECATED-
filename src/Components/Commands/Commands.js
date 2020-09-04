@@ -1,9 +1,10 @@
 import React from 'react'
+import Scrollspy from './Scrollspy'
 
 const Commands = () => {
     return (
         <div>
-            This is my commands page...
+            <Scrollspy />
         </div>
     );
 }

@@ -1,9 +1,6 @@
 import React from 'react';
 
 const validateModal = ({ modals, setModals }) => {
-    if (!validateModal) {
-        return null;
-    }
 
     const closeValidateModal = (e) => {
         e.preventDefault()
