@@ -1,9 +1,14 @@
 import React from 'react';
 
-const validateModal = ({ validateModal, closeValidateModal }) => {
+const validateModal = ({ modals, setModals }) => {
     if (!validateModal) {
         return null;
     }
+
+    const closeValidateModal = (e) => {
+        e.preventDefault()
+        setModals({ ...modals, validateModal: false })
+    };
 
     return (
         <div className="modal-body">
