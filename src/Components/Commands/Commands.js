@@ -1,5 +1,5 @@
 import React from 'react'
-import Scrollspy from './Scrollspy'
+import Scrollspy from './Scrollspy/Scrollspy'
 
 const Commands = () => {
     return (

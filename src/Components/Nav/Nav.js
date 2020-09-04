@@ -12,7 +12,7 @@ const Nav = () => {
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/commands">Commands</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/contact">Contact Us</Link></li>
                     </ul>
                 </div>
             </div>
