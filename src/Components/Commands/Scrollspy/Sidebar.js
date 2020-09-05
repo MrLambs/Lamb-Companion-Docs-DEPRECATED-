@@ -6,7 +6,9 @@ import "materialize-css/dist/css/materialize.min.css";
 class Sidebar extends Component {
     componentDidMount() {
         const options = {
-            top: 206
+            top: 206,
+            activeClass: 'active',
+            throttle: 20,
         };
         M.Pushpin.init(this.PushPin, options);
     }
@@ -15,14 +17,17 @@ class Sidebar extends Component {
         return (
             <div>
                 {/* scrollspy sidebar begins here */}
-                <div className="col hide-on-small-only m3 l2">
+                {/* hide-on-small-only m3 l2 
+                    col s12 m9 l10 
+                */}
+                <div className="col hide-on-small-only s12 m10 l10 "> 
                     <div
                         ref={PushPin => {
                             this.PushPin = PushPin;
                         }}
                         className="pushpin pin-top"
                     >
-                        <ul class="section table-of-contents">
+                        <ul class="section table-of-contents ">
                             <li>
                                 <a href="#casino">Casino</a>
                             </li>

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
+
 
 import Casino from '../Sections/Casino';
 import Forts from '../Sections/Forts';
@@ -27,93 +29,97 @@ class Scrollspy extends Component {
 
     render() {
         return (
-            <div class="row">
-                <div class="col s12 m9 l10">
-                    <div>
-                        <h3
-                            id="casino"
+            <div className="row commands-body">
+                {/* s12 m9 l10 */}
+                <div className="commands-right">
+                    <div className="col s12 m9 l10">
+                        <div>
+                            <h3
+                                id="casino"
+                                ref={ScrollSpy => {
+                                    this.ScrollSpy1 = ScrollSpy;
+                                }}
+                                className="white-text section scrollspy"
+                            />
+                            <Casino />
+                        </div>
+                        <div
                             ref={ScrollSpy => {
-                                this.ScrollSpy1 = ScrollSpy;
+                                this.ScrollSpy2 = ScrollSpy;
                             }}
+                            id="forts"
                             className="section scrollspy"
-                            className="purple-text darken-2"
-                        />
-                        <Casino />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy2 = ScrollSpy;
-                        }}
-                        id="forts"
-                        class="section scrollspy"
-                    >
-                        <Forts />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy3 = ScrollSpy;
-                        }}
-                        id="images"
-                        class="section scrollspy"
-                    >
-                        <Images />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy4 = ScrollSpy;
-                        }}
-                        id="misc"
-                        class="section scrollspy"
-                    >
-                        <Miscellaneous />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy5 = ScrollSpy;
-                        }}
-                        id="moderation"
-                        class="section scrollspy"
-                    >
-                        <Moderation />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy6 = ScrollSpy;
-                        }}
-                        id="music"
-                        class="section scrollspy"
-                    >
-                        <Music />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy7 = ScrollSpy;
-                        }}
-                        id="osrs"
-                        class="section scrollspy"
-                    >
-                        <OSRS />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy8 = ScrollSpy;
-                        }}
-                        id="overwatch"
-                        class="section scrollspy"
-                    >
-                        <Overwatch />
-                    </div>
-                    <div
-                        ref={ScrollSpy => {
-                            this.ScrollSpy9 = ScrollSpy;
-                        }}
-                        id="etf"
-                        class="section scrollspy"
-                    >
-                        <Tarkov />
+                        >
+                            <Forts />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy3 = ScrollSpy;
+                            }}
+                            id="images"
+                            className="section scrollspy"
+                        >
+                            <Images />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy4 = ScrollSpy;
+                            }}
+                            id="misc"
+                            className="section scrollspy"
+                        >
+                            <Miscellaneous />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy5 = ScrollSpy;
+                            }}
+                            id="moderation"
+                            className="section scrollspy"
+                        >
+                            <Moderation />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy6 = ScrollSpy;
+                            }}
+                            id="music"
+                            className="section scrollspy"
+                        >
+                            <Music />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy7 = ScrollSpy;
+                            }}
+                            id="osrs"
+                            class="section scrollspy"
+                        >
+                            <OSRS />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy8 = ScrollSpy;
+                            }}
+                            id="overwatch"
+                            class="section scrollspy"
+                        >
+                            <Overwatch />
+                        </div>
+                        <div
+                            ref={ScrollSpy => {
+                                this.ScrollSpy9 = ScrollSpy;
+                            }}
+                            id="etf"
+                            class="section scrollspy"
+                        >
+                            <Tarkov />
+                        </div>
                     </div>
                 </div>
-                <Sidebar />
+                <div className="commands-left">
+                    <Sidebar />
+                </div>
             </div>
         );
     }

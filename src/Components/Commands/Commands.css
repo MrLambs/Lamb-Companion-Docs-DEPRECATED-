@@ -1,0 +1,38 @@
+.commands-content {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.commands-right {
+    width: 80%;
+    float: right;
+}
+
+.commands-left {
+    width: 20%;
+    margin-top: 100px;
+    margin-left: 0px;
+    float: left;
+}
+
+h5, p {
+    padding: 0px 0px 10px 0px;
+}
+
+h5 {
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+h3 {
+    margin-left: -50px;
+    padding-bottom: 30px;
+}
+
+p {
+    padding: 10px 50px 20px 30px;
+}

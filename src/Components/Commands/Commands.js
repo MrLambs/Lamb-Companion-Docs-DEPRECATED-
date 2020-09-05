@@ -1,9 +1,10 @@
-import React from 'react'
-import Scrollspy from './Scrollspy/Scrollspy'
+import React from 'react';
+import Scrollspy from './Scrollspy/Scrollspy';
+import './Commands.css'
 
 const Commands = () => {
     return (
-        <div>
+        <div className="commands-content">
             <Scrollspy />
         </div>
     );
