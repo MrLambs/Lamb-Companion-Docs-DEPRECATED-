@@ -5,6 +5,7 @@ import Logo from '../../Assets/LC_Logo.png'
 
 const Nav = () => {
     return (
+        <div className="navbar-fixed">
         <nav>
             <div className="navbar-fixed z-depth-3">
                 <div className="nav-wrapper blue lighten-2">
@@ -17,6 +18,7 @@ const Nav = () => {
                 </div>
             </div>
         </nav>
+        </div>
     )
 }
 

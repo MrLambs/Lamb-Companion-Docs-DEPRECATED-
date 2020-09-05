@@ -6,7 +6,6 @@ import "materialize-css/dist/css/materialize.min.css";
 class Sidebar extends Component {
     componentDidMount() {
         const options = {
-            top: 206,
             activeClass: 'active',
             throttle: 20,
         };
@@ -20,12 +19,12 @@ class Sidebar extends Component {
                 {/* hide-on-small-only m3 l2 
                     col s12 m9 l10 
                 */}
-                <div className="col hide-on-small-only s12 m10 l10 "> 
+                <div className="col hide-on-small-only s12 m10 l10"> 
                     <div
                         ref={PushPin => {
                             this.PushPin = PushPin;
                         }}
-                        className="pushpin pin-top"
+                        className="scrolling-sidebar pushpin pin-top"
                     >
                         <ul class="section table-of-contents ">
                             <li>
