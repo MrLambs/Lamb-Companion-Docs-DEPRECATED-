@@ -6,57 +6,45 @@ const Casino = () => {
       <h3>Casino </h3>
       <h5><i className="material-icons prefix">arrow_forward</i> !Balance</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Balance
+      </p>
+      <p>
+        View your current account Lambies balance!
       </p>
       <h5><i className="material-icons prefix">arrow_forward</i> !Flip</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Flip [heads/tails] (bet)
+      </p>
+      <p>
+        A coin flip gamble where returns are 1 to 1.
       </p>
       <h5><i className="material-icons prefix">arrow_forward</i> !Leaderboard</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Leaderboard
+      </p>
+      <p>
+        Check the current Lambies leaderboard.
       </p>
       <h5><i className="material-icons prefix">arrow_forward</i> !Pay</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Pay [tag a member] (amount)
+      </p>
+      <p>
+        Pay another guild member Lambies by tagging them. 
       </p>
       <h5><i className="material-icons prefix">arrow_forward</i> !Roulette</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Roulette [red/black] (bet)
+      </p>
+      <p>
+        A roulette gambling game, where Lamb Companion will print a random number of alternating black and red squares. The last color printed is the winner. Returns are 1 to 1.5.
       </p>
       <h5><i className="material-icons prefix">arrow_forward</i> !Rps</h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-        penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,{" "}
+        Usage: !Rps (bet)
+      </p>
+      <p>
+        Rock, paper, scissors against Lamb Companion.
       </p>
     </div >
     );
