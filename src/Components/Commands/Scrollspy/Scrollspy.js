@@ -30,11 +30,10 @@ class Scrollspy extends Component {
     render() {
         return (
             <div className="row commands-body">
-                {/* s12 m9 l10 */}
                 <div className="commands-right">
                     <div className="col s12 m9 l10">
                         <div>
-                            <h3
+                            <div
                                 id="casino"
                                 ref={ScrollSpy => {
                                     this.ScrollSpy1 = ScrollSpy;
