@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
-
 import Casino from '../Sections/Casino';
 import Forts from '../Sections/Forts';
 import Images from '../Sections/Images';
